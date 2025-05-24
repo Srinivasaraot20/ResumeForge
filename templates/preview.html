@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ resume.title }} - Preview</title>
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css">
+    
+    <!-- Custom CSS for resume templates -->
+    <style>
+        body {
+            background-color: {{ '#ffffff' if pdf_mode else 'var(--bs-body-bg)' }};
+            font-family: Arial, sans-serif;
+            color: {{ '#000000' if pdf_mode else 'var(--bs-body-color)' }};
+        }
+        
+        .resume-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: {{ '0' if pdf_mode else '30px' }};
+        }
+        
+        .resume-page {
+            background-color: #ffffff;
+            box-shadow: {{ '0' if pdf_mode else '0 0 20px rgba(0, 0, 0, 0.2)' }};
+            margin-bottom: 20px;
+            padding: 40px;
+            color: #000;
+        }
+        
+        .resume-header {
+            margin-bottom: 20px;
+        }
+        
+        .resume-header h1 {
+            margin: 0;
+            font-size: 2.2rem;
+            color: #2c3e50;
+        }
+        
+        .resume-section {
+            margin-bottom: 25px;
+        }
+        
+        .resume-section-title {
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .resume-item {
+            margin-bottom: 15px;
+        }
+        
+        .resume-item h4 {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .resume-item h5 {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: normal;
+            color: #34495e;
+        }
+        
+        .resume-item p {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+        }
+        
+        .resume-item .date {
+            font-style: italic;
+            color: #7f8c8d;
+        }
+        
+        .resume-skill {
+            margin-bottom: 15px;
+            width: 100%;
+        }
+        
+        .resume-language {
+            margin-bottom: 15px;
+            width: 100%;
+        }
+        
+        .resume-interest {
+            display: inline-block;
+            margin-right: 15px;
+            margin-bottom: 10px;
+        }
+        
+        .language-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        
+        .language-proficiency-dots {
+            margin-top: 3px;
+            display: flex;
+            gap: 5px;
+        }
+        
+        .proficiency-dot-filled, .proficiency-dot-empty {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .proficiency-dot-filled {
+            background-color: #3498db;
+        }
+        
+        .proficiency-dot-empty {
+            background-color: #e9ecef;
+            border: 1px solid #d0d0d0;
+        }
+        
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        
+        .skill-name, .language-name {
+            font-weight: bold;
+        }
+        
+        .skill-level, .language-level {
+            color: #7f8c8d;
+            font-size: 0.8rem;
+        }
+        
+        .skill-progress {
+            background-color: #e9ecef;
+            border-radius: 4px;
+            height: 8px;
+            overflow: hidden;
+        }
+        
+        .skill-progress-bar {
+            background-color: #3498db;
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        
+        .contact-info {
+            margin-bottom: 15px;
+        }
+        
+        .contact-info p {
+            margin: 5px 0;
+        }
+        
+        .contact-info a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .resume-page {
+                padding: 20px;
+            }
+            
+            .resume-header h1 {
+                font-size: 1.8rem;
+            }
+        }
+        
+        /* PDF specific styles */
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+                background: #fff;
+            }
+            
+            .resume-container {
+                width: 100%;
+                max-width: none;
+                padding: 0;
+                margin: 0;
+            }
+            
+            .resume-page {
+                box-shadow: none;
+                padding: 40px;
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="resume-container">
+        <div class="resume-page">
+            {% include template_path %}
+        </div>
+    </div>
+    
+    {% if not pdf_mode %}
+        <!-- JavaScript for live preview -->
+        <script src="{{ url_for('static', filename='js/templates.js') }}"></script>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,218 @@
+{% extends "base.html" %}
+
+{% block title %}ResumeGenie - AI-Powered Resume Builder{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="bg-dark text-white py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4">Create professional resumes in minutes, not hours</h1>
+                <p class="lead mb-4">ResumeGenie helps you build stunning resumes with modern templates and AI-powered content suggestions. Land your dream job with a professional resume that highlights your skills and experience.</p>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                    <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg px-4 me-md-2">Get Started</a>
+                    <a href="{{ url_for('login') }}" class="btn btn-outline-light btn-lg px-4">Sign In</a>
+                </div>
+            </div>
+            <div class="col-lg-6 mt-5 mt-lg-0">
+                <img src="https://pixabay.com/get/g6e47af031047c7a64d1ed64a792e5eee30432b92b9609122d754f44d29dab9c30ce8c9748424e1996f170a142d2ae80d4edced79679be5469a8497c0f7a35b0b_1280.jpg" 
+                     class="img-fluid rounded shadow" alt="Professional Resume Template">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Features Section -->
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h2 class="display-5 fw-bold">Features That Make Resume Building Easy</h2>
+        <p class="lead text-muted">Everything you need to create a standout resume in one place</p>
+    </div>
+    
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center p-4">
+                    <div class="mb-3">
+                        <i class="bi bi-palette display-4 text-primary"></i>
+                    </div>
+                    <h3 class="card-title">Professional Templates</h3>
+                    <p class="card-text">Choose from multiple professionally designed templates that are ATS-friendly and optimized for success.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center p-4">
+                    <div class="mb-3">
+                        <i class="bi bi-lightning-charge display-4 text-primary"></i>
+                    </div>
+                    <h3 class="card-title">Live Preview</h3>
+                    <p class="card-text">See changes in real-time as you build your resume, ensuring it looks perfect before you download.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center p-4">
+                    <div class="mb-3">
+                        <i class="bi bi-file-earmark-pdf display-4 text-primary"></i>
+                    </div>
+                    <h3 class="card-title">PDF Export</h3>
+                    <p class="card-text">Download your resume as a professional PDF file that maintains perfect formatting for printing or sharing.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Templates Section -->
+<div class="bg-light py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold">Professional Resume Templates</h2>
+            <p class="lead text-muted">Stand out with beautifully designed, employer-ready templates</p>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm">
+                    <img src="https://pixabay.com/get/g9f8d993f6c5f36ee3c8ca0102c215794aedd31eef268c111040f064169665e177623e381d69cc82e943e5f7e517dd58a394144c71d8e40229007927ef8473ccf_1280.jpg" 
+                         class="card-img-top" alt="Professional Template">
+                    <div class="card-body text-center">
+                        <h4 class="card-title">Professional</h4>
+                        <p class="card-text">A clean, traditional design perfect for any industry</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm">
+                    <img src="https://pixabay.com/get/gf7e8db581c486d359712dc715bcff8ece10569e85f6367b56dc1c0221dc9829ea6b18a53dd222827f1d9bea6c07985b064480cb592844c974b9b9bf8865bf2fb_1280.jpg" 
+                         class="card-img-top" alt="Modern Template">
+                    <div class="card-body text-center">
+                        <h4 class="card-title">Modern</h4>
+                        <p class="card-text">A contemporary design with a sleek, innovative layout</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm">
+                    <img src="https://pixabay.com/get/g71d922148fc3b122734b858e5f1a9194662430daddfa6df9d75591485516341fb9a88679dba85ac4207ed386c84a5c661c1270ed659d229ab9458f35400f85a2_1280.jpg" 
+                         class="card-img-top" alt="Creative Template">
+                    <div class="card-body text-center">
+                        <h4 class="card-title">Creative</h4>
+                        <p class="card-text">A bold design for those who want to stand out</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm">
+                    <img src="https://pixabay.com/get/g6e47af031047c7a64d1ed64a792e5eee30432b92b9609122d754f44d29dab9c30ce8c9748424e1996f170a142d2ae80d4edced79679be5469a8497c0f7a35b0b_1280.jpg" 
+                         class="card-img-top" alt="Minimal Template">
+                    <div class="card-body text-center">
+                        <h4 class="card-title">Minimal</h4>
+                        <p class="card-text">A simple, elegant design that lets your content shine</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-5">
+            <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg">Create Your Resume Now</a>
+        </div>
+    </div>
+</div>
+
+<!-- Testimonials Section -->
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h2 class="display-5 fw-bold">Happy Job Seekers</h2>
+        <p class="lead text-muted">Join thousands who have landed their dream jobs with ResumeGenie</p>
+    </div>
+    
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body p-4">
+                    <div class="d-flex mb-3">
+                        <img src="https://pixabay.com/get/g4bef170fb908e3a7c74200744b104944d034670c247a14574e862287d722a568673db22a68055e19c3b55789615cec13a28641143b911b51c46ebcfc38a602e1_1280.jpg" 
+                             class="rounded-circle" width="60" height="60" alt="User testimonial">
+                        <div class="ms-3">
+                            <h5 class="mb-0">Sarah Johnson</h5>
+                            <p class="text-muted mb-0">Marketing Specialist</p>
+                        </div>
+                    </div>
+                    <p class="card-text">"ResumeGenie helped me create a professional resume that got me multiple interviews. I landed my dream job within 2 weeks of using the platform!"</p>
+                    <div class="text-warning">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body p-4">
+                    <div class="d-flex mb-3">
+                        <img src="https://pixabay.com/get/g48c0add316ced0e2128c937521b11d8286717e93321af844fd7c054d732f875f195dae5b01de46acb8804d918a2868a905e8dca0821401481cc167c681b42f01_1280.jpg" 
+                             class="rounded-circle" width="60" height="60" alt="User testimonial">
+                        <div class="ms-3">
+                            <h5 class="mb-0">Michael Chen</h5>
+                            <p class="text-muted mb-0">Software Engineer</p>
+                        </div>
+                    </div>
+                    <p class="card-text">"The templates are modern and professional. The live preview feature saved me so much time. I could instantly see how my resume would look."</p>
+                    <div class="text-warning">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-half"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body p-4">
+                    <div class="d-flex mb-3">
+                        <img src="https://pixabay.com/get/ged861cc318197aecfb64bf32081a5479022d4d19335ed2d21200431128266b983479e88b0c7d35606bfd485c77e32b4485172a46b9e152e505e8673c09a68ae7_1280.jpg" 
+                             class="rounded-circle" width="60" height="60" alt="User testimonial">
+                        <div class="ms-3">
+                            <h5 class="mb-0">Emily Rodriguez</h5>
+                            <p class="text-muted mb-0">Project Manager</p>
+                        </div>
+                    </div>
+                    <p class="card-text">"After struggling with my resume for weeks, I found ResumeGenie and created a perfect resume in less than an hour. The interface is intuitive and user-friendly."</p>
+                    <div class="text-warning">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CTA Section -->
+<div class="bg-primary text-white py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 class="display-5 fw-bold mb-4">Ready to create your professional resume?</h2>
+                <p class="lead mb-4">Join thousands of job seekers who have successfully landed their dream jobs with ResumeGenie.</p>
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <a href="{{ url_for('register') }}" class="btn btn-light btn-lg px-4 gap-3">Get Started Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

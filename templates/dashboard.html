@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - ResumeGenie{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>My Resumes</h1>
+        <a href="{{ url_for('new_resume') }}" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Create New Resume
+        </a>
+    </div>
+    
+    <div class="row">
+        {% if resumes %}
+            {% for resume in resumes %}
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card resume-card h-100">
+                        <div class="card-body">
+                            <div class="resume-actions">
+                                <div class="dropdown">
+                                    <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-three-dots-vertical"></i>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item" href="{{ url_for('edit_resume', resume_id=resume.id) }}">
+                                                <i class="bi bi-pencil"></i> Edit
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="{{ url_for('view_resume', resume_id=resume.id) }}">
+                                                <i class="bi bi-eye"></i> Preview
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="{{ url_for('download_pdf', resume_id=resume.id) }}">
+                                                <i class="bi bi-file-earmark-pdf"></i> Download PDF
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <form action="{{ url_for('duplicate_resume', resume_id=resume.id) }}" method="POST" class="d-inline">
+                                                <button type="submit" class="dropdown-item">
+                                                    <i class="bi bi-files"></i> Duplicate
+                                                </button>
+                                            </form>
+                                        </li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li>
+                                            <form action="{{ url_for('delete_resume', resume_id=resume.id) }}" method="POST" class="d-inline" 
+                                                  onsubmit="return confirm('Are you sure you want to delete this resume? This action cannot be undone.');">
+                                                <button type="submit" class="dropdown-item text-danger">
+                                                    <i class="bi bi-trash"></i> Delete
+                                                </button>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <h3 class="card-title">{{ resume.title }}</h3>
+                            <p class="card-text text-muted">
+                                <small>Template: {{ get_template_name(resume.template_id) }}</small>
+                            </p>
+                            <p class="card-text text-muted">
+                                <small>Last updated: {{ resume.updated_at.strftime('%b %d, %Y') }}</small>
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="d-flex justify-content-between">
+                                <a href="{{ url_for('edit_resume', resume_id=resume.id) }}" class="btn btn-primary btn-sm">
+                                    <i class="bi bi-pencil"></i> Edit
+                                </a>
+                                <a href="{{ url_for('download_pdf', resume_id=resume.id) }}" class="btn btn-success btn-sm">
+                                    <i class="bi bi-download"></i> Download
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body text-center py-5">
+                        <i class="bi bi-file-earmark-x display-1 text-muted mb-3"></i>
+                        <h3>You don't have any resumes yet</h3>
+                        <p class="text-muted">Create your first resume to get started!</p>
+                        <a href="{{ url_for('new_resume') }}" class="btn btn-primary mt-3">
+                            <i class="bi bi-plus-circle"></i> Create New Resume
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

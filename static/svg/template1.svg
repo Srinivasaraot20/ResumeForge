@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <style>
+    .background { fill: #ffffff; }
+    .header { fill: #2c3e50; }
+    .sidebar { fill: #34495e; }
+    .main-content { fill: #ecf0f1; }
+    .text-box { fill: #ffffff; }
+    .line { stroke: #7f8c8d; stroke-width: 2; }
+  </style>
+  
+  <!-- Background -->
+  <rect class="background" width="800" height="600" />
+  
+  <!-- Header -->
+  <rect class="header" x="0" y="0" width="800" height="120" />
+  
+  <!-- Sidebar -->
+  <rect class="sidebar" x="0" y="120" width="250" height="480" />
+  
+  <!-- Main content area -->
+  <rect class="main-content" x="250" y="120" width="550" height="480" />
+  
+  <!-- Name and Title Text Area -->
+  <rect class="text-box" x="20" y="30" width="500" height="60" rx="3" />
+  
+  <!-- Contact Info Area -->
+  <rect class="text-box" x="550" y="30" width="230" height="60" rx="3" />
+  
+  <!-- Sidebar Sections -->
+  <rect class="text-box" x="20" y="140" width="210" height="100" rx="3" />
+  <rect class="text-box" x="20" y="260" width="210" height="140" rx="3" />
+  <rect class="text-box" x="20" y="420" width="210" height="160" rx="3" />
+  
+  <!-- Main Content Sections -->
+  <rect class="text-box" x="270" y="140" width="510" height="140" rx="3" />
+  <rect class="text-box" x="270" y="300" width="510" height="280" rx="3" />
+  
+  <!-- Decorative elements -->
+  <line class="line" x1="20" y1="190" x2="230" y2="190" />
+  <line class="line" x1="20" y1="310" x2="230" y2="310" />
+  <line class="line" x1="20" y1="470" x2="230" y2="470" />
+  <line class="line" x1="270" y1="190" x2="780" y2="190" />
+  <line class="line" x1="270" y1="350" x2="780" y2="350" />
+  
+  <!-- Template Name -->
+  <text x="400" y="580" font-family="Arial" font-size="16" text-anchor="middle" fill="#2c3e50">Professional Template</text>
+</svg>

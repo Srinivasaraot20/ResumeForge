@@ -1,0 +1,192 @@
+/* Custom styles for Resume Maker application */
+
+/* General Styles */
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Header & Navigation */
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+/* Forms */
+.form-control:focus {
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+.invalid-feedback {
+    font-size: 0.875rem;
+}
+
+/* Dashboard */
+.resume-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+    height: 100%;
+}
+
+.resume-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+}
+
+.resume-actions {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.resume-card:hover .resume-actions {
+    opacity: 1;
+}
+
+/* Template selection */
+.template-card {
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    height: 100%;
+}
+
+.template-card.selected {
+    border-color: var(--bs-primary);
+    transform: translateY(-5px);
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+}
+
+.template-card:hover:not(.selected) {
+    transform: translateY(-3px);
+    box-shadow: 0 .25rem .5rem rgba(0,0,0,.1);
+}
+
+.template-preview {
+    height: 250px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/* Resume Editor */
+.editor-container {
+    display: flex;
+    min-height: calc(100vh - 120px);
+}
+
+.editor-sidebar {
+    width: 320px;
+    flex-shrink: 0;
+    overflow-y: auto;
+}
+
+.editor-content {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 0 1rem;
+}
+
+.editor-preview {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 0 1rem;
+    background-color: var(--bs-light);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+}
+
+.section-content {
+    padding: 0.5rem 0;
+}
+
+.item-card {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.item-actions {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.item-card:hover .item-actions {
+    opacity: 1;
+}
+
+.add-item-btn {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+/* PDF Preview */
+.pdf-container {
+    margin: 0 auto;
+    max-width: 1000px;
+    background-color: white;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .editor-container {
+        flex-direction: column;
+    }
+    
+    .editor-sidebar {
+        width: 100%;
+        max-height: 300px;
+    }
+}
+
+/* Footer */
+footer {
+    margin-top: auto;
+    padding: 1.5rem 0;
+}
+
+/* Template styling for preview */
+.resume-preview {
+    width: 100%;
+    height: 100%;
+    max-height: 1200px;
+    overflow-y: auto;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+}
+
+/* Loading animation */
+.spinner-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.spinner-container {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    text-align: center;
+}

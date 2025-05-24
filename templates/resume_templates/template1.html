@@ -1,0 +1,165 @@
+<!-- Professional Template -->
+<div class="resume-header">
+    <h1 data-field="name">{{ content.personal_info.name }}</h1>
+    <div class="contact-info">
+        {% if content.personal_info.email %}
+            <p><a href="mailto:{{ content.personal_info.email }}" data-field="email">{{ content.personal_info.email }}</a></p>
+        {% endif %}
+        {% if content.personal_info.phone %}
+            <p><a href="tel:{{ content.personal_info.phone }}" data-field="phone">{{ content.personal_info.phone }}</a></p>
+        {% endif %}
+        {% if content.personal_info.address %}
+            <p data-field="address">{{ content.personal_info.address }}</p>
+        {% endif %}
+        {% if content.personal_info.linkedin %}
+            <p><a href="{{ content.personal_info.linkedin }}" target="_blank" data-field="linkedin">{{ content.personal_info.linkedin }}</a></p>
+        {% endif %}
+        {% if content.personal_info.website %}
+            <p><a href="{{ content.personal_info.website }}" target="_blank" data-field="website">{{ content.personal_info.website }}</a></p>
+        {% endif %}
+    </div>
+</div>
+
+{% if content.personal_info.summary %}
+    <div class="resume-section" data-section-container="summary">
+        <h3 class="resume-section-title">Professional Summary</h3>
+        <p data-field="summary">{{ content.personal_info.summary }}</p>
+    </div>
+{% endif %}
+
+<div class="resume-section" data-section-container="experience">
+    <h3 class="resume-section-title">Experience</h3>
+    <div data-section="experience">
+        {% if content.experience %}
+            {% for item in content.experience %}
+                <div class="resume-item">
+                    <h4>{{ item.position }}</h4>
+                    <h5>{{ item.company }}{% if item.location %}, {{ item.location }}{% endif %}</h5>
+                    <p class="date">
+                        {% if item.start_date and item.end_date %}
+                            {{ item.start_date|truncate(7, True, '') }} - {{ item.end_date|truncate(7, True, '') }}
+                        {% elif item.start_date %}
+                            {{ item.start_date|truncate(7, True, '') }} - Present
+                        {% elif item.end_date %}
+                            Until {{ item.end_date|truncate(7, True, '') }}
+                        {% endif %}
+                    </p>
+                    <p>{{ item.description }}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+
+<div class="resume-section" data-section-container="education">
+    <h3 class="resume-section-title">Education</h3>
+    <div data-section="education">
+        {% if content.education %}
+            {% for item in content.education %}
+                <div class="resume-item">
+                    <h4>{{ item.institution }}</h4>
+                    <h5>{{ item.degree }}{% if item.field_of_study %} in {{ item.field_of_study }}{% endif %}</h5>
+                    <p class="date">
+                        {% if item.start_date and item.end_date %}
+                            {{ item.start_date|truncate(7, True, '') }} - {{ item.end_date|truncate(7, True, '') }}
+                        {% elif item.start_date %}
+                            {{ item.start_date|truncate(7, True, '') }} - Present
+                        {% elif item.end_date %}
+                            Until {{ item.end_date|truncate(7, True, '') }}
+                        {% endif %}
+                    </p>
+                    <p>{{ item.description }}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+
+<div class="resume-section" data-section-container="skills">
+    <h3 class="resume-section-title">Skills</h3>
+    <div data-section="skills">
+        {% if content.skills %}
+            {% for item in content.skills %}
+                <div class="resume-skill">
+                    <span class="skill-name">{{ item.name }}</span>
+                    {% if item.level %}
+                        <span class="skill-level"> ({{ item.level }})</span>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+
+{% if content.projects and content.projects|length > 0 %}
+    <div class="resume-section" data-section-container="projects">
+        <h3 class="resume-section-title">Projects</h3>
+        <div data-section="projects">
+            {% for item in content.projects %}
+                <div class="resume-item">
+                    <h4>{{ item.title }}</h4>
+                    <p class="date">
+                        {% if item.start_date and item.end_date %}
+                            {{ item.start_date|truncate(7, True, '') }} - {{ item.end_date|truncate(7, True, '') }}
+                        {% elif item.start_date %}
+                            {{ item.start_date|truncate(7, True, '') }} - Present
+                        {% elif item.end_date %}
+                            Until {{ item.end_date|truncate(7, True, '') }}
+                        {% endif %}
+                    </p>
+                    <p>{{ item.description }}</p>
+                    {% if item.url %}
+                        <p><a href="{{ item.url }}" target="_blank">{{ item.url }}</a></p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}
+
+{% if content.certifications and content.certifications|length > 0 %}
+    <div class="resume-section" data-section-container="certifications">
+        <h3 class="resume-section-title">Certifications</h3>
+        <div data-section="certifications">
+            {% for item in content.certifications %}
+                <div class="resume-item">
+                    <h4>{{ item.title }}</h4>
+                    <h5>{{ item.issuer }}</h5>
+                    {% if item.date %}
+                        <p class="date">{{ item.date|truncate(7, True, '') }}</p>
+                    {% endif %}
+                    <p>{{ item.description }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}
+
+{% if content.languages and content.languages|length > 0 %}
+    <div class="resume-section" data-section-container="languages">
+        <h3 class="resume-section-title">Languages</h3>
+        <div data-section="languages">
+            {% for item in content.languages %}
+                <div class="resume-language">
+                    <span class="language-name">{{ item.language }}</span>
+                    {% if item.proficiency %}
+                        <span class="language-level"> ({{ item.proficiency }})</span>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}
+
+{% if content.interests and content.interests|length > 0 %}
+    <div class="resume-section" data-section-container="interests">
+        <h3 class="resume-section-title">Interests</h3>
+        <div data-section="interests">
+            {% for item in content.interests %}
+                <div class="resume-interest">
+                    <span>{{ item.name }}</span>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}

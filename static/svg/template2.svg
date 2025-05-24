@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <style>
+    .background { fill: #ffffff; }
+    .header { fill: #3498db; }
+    .main-content { fill: #ecf0f1; }
+    .text-box { fill: #ffffff; }
+    .accent { fill: #2980b9; }
+    .line { stroke: #7f8c8d; stroke-width: 2; }
+  </style>
+  
+  <!-- Background -->
+  <rect class="background" width="800" height="600" />
+  
+  <!-- Header -->
+  <rect class="header" x="0" y="0" width="800" height="150" />
+  
+  <!-- Main content area -->
+  <rect class="main-content" x="0" y="150" width="800" height="450" />
+  
+  <!-- Name and Title Text Area -->
+  <rect class="text-box" x="50" y="50" width="700" height="70" rx="5" />
+  
+  <!-- Accent bar -->
+  <rect class="accent" x="0" y="150" width="800" height="20" />
+  
+  <!-- Content Sections -->
+  <rect class="text-box" x="50" y="190" width="340" height="160" rx="5" />
+  <rect class="text-box" x="410" y="190" width="340" height="160" rx="5" />
+  <rect class="text-box" x="50" y="370" width="700" height="200" rx="5" />
+  
+  <!-- Decorative elements -->
+  <line class="line" x1="50" y1="240" x2="390" y2="240" />
+  <line class="line" x1="410" y1="240" x2="750" y2="240" />
+  <line class="line" x1="50" y1="420" x2="750" y2="420" />
+  
+  <!-- Template Name -->
+  <text x="400" y="580" font-family="Arial" font-size="16" text-anchor="middle" fill="#2c3e50">Modern Template</text>
+</svg>

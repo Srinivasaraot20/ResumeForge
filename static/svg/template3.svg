@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <style>
+    .background { fill: #ffffff; }
+    .header { fill: #e74c3c; }
+    .sidebar { fill: #c0392b; }
+    .main-content { fill: #ecf0f1; }
+    .text-box { fill: #ffffff; }
+    .accent { fill: #e67e22; }
+    .circle { fill: #e74c3c; }
+  </style>
+  
+  <!-- Background -->
+  <rect class="background" width="800" height="600" />
+  
+  <!-- Sidebar -->
+  <rect class="sidebar" x="0" y="0" width="250" height="600" />
+  
+  <!-- Main content area -->
+  <rect class="main-content" x="250" y="0" width="550" height="600" />
+  
+  <!-- Header in main content -->
+  <rect class="header" x="250" y="0" width="550" height="120" />
+  
+  <!-- Accent elements -->
+  <rect class="accent" x="250" y="120" width="550" height="10" />
+  
+  <!-- Sidebar Sections -->
+  <rect class="text-box" x="20" y="20" width="210" height="180" rx="10" />
+  <rect class="text-box" x="20" y="220" width="210" height="160" rx="10" />
+  <rect class="text-box" x="20" y="400" width="210" height="180" rx="10" />
+  
+  <!-- Main Content Sections -->
+  <rect class="text-box" x="280" y="150" width="490" height="130" rx="10" />
+  <rect class="text-box" x="280" y="300" width="490" height="280" rx="10" />
+  
+  <!-- Decorative elements -->
+  <circle class="circle" cx="125" cy="110" r="60" />
+  <circle class="accent" cx="50" cy="300" r="15" />
+  <circle class="accent" cx="50" cy="350" r="15" />
+  <circle class="accent" cx="50" cy="480" r="15" />
+  <circle class="accent" cx="50" cy="530" r="15" />
+  
+  <!-- Template Name -->
+  <text x="525" y="580" font-family="Arial" font-size="16" text-anchor="middle" fill="#2c3e50">Creative Template</text>
+</svg>

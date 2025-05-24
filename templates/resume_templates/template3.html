@@ -1,0 +1,254 @@
+<!-- Creative Template -->
+<div style="display: flex; flex-direction: row; margin: -40px -40px 0 -40px; min-height: 100%;">
+    <!-- Sidebar -->
+    <div style="background-color: #e74c3c; color: white; width: 250px; padding: 40px 20px;">
+        <div style="text-align: center; margin-bottom: 30px;">
+            <div style="width: 120px; height: 120px; border-radius: 50%; background-color: #c0392b; margin: 0 auto 15px auto; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                <!-- Initial of the name as avatar -->
+                <div style="font-size: 60px; font-weight: bold; text-transform: uppercase;" data-field="name-initial">
+                    {% if content.personal_info.name %}
+                        {{ content.personal_info.name[0] }}
+                    {% else %}
+                        ?
+                    {% endif %}
+                </div>
+            </div>
+            <h1 data-field="name" style="font-size: 1.8rem; margin-bottom: 5px; color: white;">{{ content.personal_info.name }}</h1>
+        </div>
+
+        <div class="contact-info" style="margin-bottom: 30px;">
+            <h3 style="text-transform: uppercase; font-size: 1.1rem; margin-bottom: 15px; border-bottom: 2px solid #fff; padding-bottom: 5px;">Contact</h3>
+            {% if content.personal_info.email %}
+                <p style="display: flex; align-items: center; margin-bottom: 10px;">
+                    <span style="width: 25px; height: 25px; background-color: #c0392b; border-radius: 50%; display: inline-flex; justify-content: center; align-items: center; margin-right: 10px;">
+                        <i class="bi bi-envelope"></i>
+                    </span>
+                    <a href="mailto:{{ content.personal_info.email }}" data-field="email" style="color: white; text-decoration: none;">{{ content.personal_info.email }}</a>
+                </p>
+            {% endif %}
+            {% if content.personal_info.phone %}
+                <p style="display: flex; align-items: center; margin-bottom: 10px;">
+                    <span style="width: 25px; height: 25px; background-color: #c0392b; border-radius: 50%; display: inline-flex; justify-content: center; align-items: center; margin-right: 10px;">
+                        <i class="bi bi-telephone"></i>
+                    </span>
+                    <a href="tel:{{ content.personal_info.phone }}" data-field="phone" style="color: white; text-decoration: none;">{{ content.personal_info.phone }}</a>
+                </p>
+            {% endif %}
+            {% if content.personal_info.address %}
+                <p style="display: flex; align-items: center; margin-bottom: 10px;">
+                    <span style="width: 25px; height: 25px; background-color: #c0392b; border-radius: 50%; display: inline-flex; justify-content: center; align-items: center; margin-right: 10px;">
+                        <i class="bi bi-geo-alt"></i>
+                    </span>
+                    <span data-field="address">{{ content.personal_info.address }}</span>
+                </p>
+            {% endif %}
+            {% if content.personal_info.linkedin %}
+                <p style="display: flex; align-items: center; margin-bottom: 10px;">
+                    <span style="width: 25px; height: 25px; background-color: #c0392b; border-radius: 50%; display: inline-flex; justify-content: center; align-items: center; margin-right: 10px;">
+                        <i class="bi bi-linkedin"></i>
+                    </span>
+                    <a href="{{ content.personal_info.linkedin }}" target="_blank" data-field="linkedin" style="color: white; text-decoration: none;">LinkedIn</a>
+                </p>
+            {% endif %}
+            {% if content.personal_info.website %}
+                <p style="display: flex; align-items: center; margin-bottom: 10px;">
+                    <span style="width: 25px; height: 25px; background-color: #c0392b; border-radius: 50%; display: inline-flex; justify-content: center; align-items: center; margin-right: 10px;">
+                        <i class="bi bi-globe"></i>
+                    </span>
+                    <a href="{{ content.personal_info.website }}" target="_blank" data-field="website" style="color: white; text-decoration: none;">Website</a>
+                </p>
+            {% endif %}
+        </div>
+
+        <div class="resume-section" data-section-container="skills">
+            <h3 style="text-transform: uppercase; font-size: 1.1rem; margin-bottom: 15px; border-bottom: 2px solid #fff; padding-bottom: 5px;">Skills</h3>
+            <div data-section="skills">
+                {% if content.skills %}
+                    {% for item in content.skills %}
+                        <div class="resume-skill" style="margin-bottom: 15px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span class="skill-name">{{ item.name }}</span>
+                                <span class="skill-level">{{ item.level }}</span>
+                            </div>
+                            {% if item.level %}
+                                <div style="background-color: rgba(255, 255, 255, 0.3); height: 6px; border-radius: 3px; overflow: hidden;">
+                                    {% if item.level == 'Beginner' %}
+                                        {% set level_width = 25 %}
+                                    {% elif item.level == 'Intermediate' %}
+                                        {% set level_width = 50 %}
+                                    {% elif item.level == 'Advanced' %}
+                                        {% set level_width = 75 %}
+                                    {% elif item.level == 'Expert' %}
+                                        {% set level_width = 100 %}
+                                    {% else %}
+                                        {% set level_width = 50 %}
+                                    {% endif %}
+                                    <div style="background-color: white; height: 100%; width: {{ level_width }}%;"></div>
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+
+        {% if content.languages and content.languages|length > 0 %}
+            <div class="resume-section" data-section-container="languages">
+                <h3 style="text-transform: uppercase; font-size: 1.1rem; margin-bottom: 15px; border-bottom: 2px solid #fff; padding-bottom: 5px;">Languages</h3>
+                <div data-section="languages">
+                    {% for item in content.languages %}
+                        <div class="resume-language" style="margin-bottom: 15px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span class="language-name">{{ item.language }}</span>
+                                <span class="language-level">{{ item.proficiency }}</span>
+                            </div>
+                            {% if item.proficiency %}
+                                <div style="background-color: rgba(255, 255, 255, 0.3); height: 6px; border-radius: 3px; overflow: hidden;">
+                                    {% if item.proficiency == 'Elementary' %}
+                                        {% set level_width = 20 %}
+                                    {% elif item.proficiency == 'Limited Working' %}
+                                        {% set level_width = 40 %}
+                                    {% elif item.proficiency == 'Professional Working' %}
+                                        {% set level_width = 60 %}
+                                    {% elif item.proficiency == 'Full Professional' %}
+                                        {% set level_width = 80 %}
+                                    {% elif item.proficiency == 'Native/Bilingual' %}
+                                        {% set level_width = 100 %}
+                                    {% else %}
+                                        {% set level_width = 50 %}
+                                    {% endif %}
+                                    <div style="background-color: white; height: 100%; width: {{ level_width }}%;"></div>
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+
+        {% if content.interests and content.interests|length > 0 %}
+            <div class="resume-section" data-section-container="interests">
+                <h3 style="text-transform: uppercase; font-size: 1.1rem; margin-bottom: 15px; border-bottom: 2px solid #fff; padding-bottom: 5px;">Interests</h3>
+                <div data-section="interests">
+                    {% for item in content.interests %}
+                        <div class="resume-interest" style="display: flex; align-items: center; margin-bottom: 10px;">
+                            <span style="width: 8px; height: 8px; background-color: #fff; border-radius: 50%; margin-right: 10px;"></span>
+                            <span>{{ item.name }}</span>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- Main content -->
+    <div style="background-color: white; flex-grow: 1; padding: 40px;">
+        <!-- Header section with name as title in main area -->
+        <div style="background-color: #e74c3c; margin: -40px -40px 30px -40px; padding: 30px 40px; color: white;">
+            <h2 style="text-transform: uppercase; letter-spacing: 2px; margin: 0;">{{ content.personal_info.name }}</h2>
+        </div>
+
+        {% if content.personal_info.summary %}
+            <div class="resume-section" data-section-container="summary">
+                <h3 style="color: #e74c3c; text-transform: uppercase; border-bottom: 2px solid #e74c3c; padding-bottom: 5px; font-size: 1.2rem;">PROFESSIONAL SUMMARY</h3>
+                <p data-field="summary" style="line-height: 1.6; color: #333;">{{ content.personal_info.summary }}</p>
+            </div>
+        {% endif %}
+
+        <div class="resume-section" data-section-container="experience">
+            <h3 style="color: #e74c3c; text-transform: uppercase; border-bottom: 2px solid #e74c3c; padding-bottom: 5px; font-size: 1.2rem;">EXPERIENCE</h3>
+            <div data-section="experience">
+                {% if content.experience %}
+                    {% for item in content.experience %}
+                        <div class="resume-item" style="margin-bottom: 20px; position: relative; padding-left: 20px;">
+                            <div style="position: absolute; left: 0; top: 5px; width: 10px; height: 10px; background-color: #e74c3c; border-radius: 50%;"></div>
+                            <h4 style="color: #333; font-weight: bold; margin-bottom: 5px;">{{ item.position }}</h4>
+                            <h5 style="color: #555; font-weight: 500; margin-bottom: 5px;">{{ item.company }}{% if item.location %}, {{ item.location }}{% endif %}</h5>
+                            <p class="date" style="color: #777; font-style: italic; margin-bottom: 5px;">
+                                {% if item.start_date and item.end_date %}
+                                    {{ item.start_date|truncate(7, True, '') }} - {{ item.end_date|truncate(7, True, '') }}
+                                {% elif item.start_date %}
+                                    {{ item.start_date|truncate(7, True, '') }} - Present
+                                {% elif item.end_date %}
+                                    Until {{ item.end_date|truncate(7, True, '') }}
+                                {% endif %}
+                            </p>
+                            <p style="margin-top: 10px; color: #333;">{{ item.description }}</p>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="resume-section" data-section-container="education">
+            <h3 style="color: #e74c3c; text-transform: uppercase; border-bottom: 2px solid #e74c3c; padding-bottom: 5px; font-size: 1.2rem;">EDUCATION</h3>
+            <div data-section="education">
+                {% if content.education %}
+                    {% for item in content.education %}
+                        <div class="resume-item" style="margin-bottom: 20px; position: relative; padding-left: 20px;">
+                            <div style="position: absolute; left: 0; top: 5px; width: 10px; height: 10px; background-color: #e74c3c; border-radius: 50%;"></div>
+                            <h4 style="color: #333; font-weight: bold; margin-bottom: 5px;">{{ item.institution }}</h4>
+                            <h5 style="color: #555; font-weight: 500; margin-bottom: 5px;">{{ item.degree }}{% if item.field_of_study %} in {{ item.field_of_study }}{% endif %}</h5>
+                            <p class="date" style="color: #777; font-style: italic; margin-bottom: 5px;">
+                                {% if item.start_date and item.end_date %}
+                                    {{ item.start_date|truncate(7, True, '') }} - {{ item.end_date|truncate(7, True, '') }}
+                                {% elif item.start_date %}
+                                    {{ item.start_date|truncate(7, True, '') }} - Present
+                                {% elif item.end_date %}
+                                    Until {{ item.end_date|truncate(7, True, '') }}
+                                {% endif %}
+                            </p>
+                            <p style="margin-top: 10px; color: #333;">{{ item.description }}</p>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+
+        {% if content.projects and content.projects|length > 0 %}
+            <div class="resume-section" data-section-container="projects">
+                <h3 style="color: #e74c3c; text-transform: uppercase; border-bottom: 2px solid #e74c3c; padding-bottom: 5px; font-size: 1.2rem;">PROJECTS</h3>
+                <div data-section="projects">
+                    {% for item in content.projects %}
+                        <div class="resume-item" style="margin-bottom: 20px; position: relative; padding-left: 20px;">
+                            <div style="position: absolute; left: 0; top: 5px; width: 10px; height: 10px; background-color: #e74c3c; border-radius: 50%;"></div>
+                            <h4 style="color: #333; font-weight: bold; margin-bottom: 5px;">{{ item.title }}</h4>
+                            <p class="date" style="color: #777; font-style: italic; margin-bottom: 5px;">
+                                {% if item.start_date and item.end_date %}
+                                    {{ item.start_date|truncate(7, True, '') }} - {{ item.end_date|truncate(7, True, '') }}
+                                {% elif item.start_date %}
+                                    {{ item.start_date|truncate(7, True, '') }} - Present
+                                {% elif item.end_date %}
+                                    Until {{ item.end_date|truncate(7, True, '') }}
+                                {% endif %}
+                            </p>
+                            <p style="margin-top: 10px; color: #333;">{{ item.description }}</p>
+                            {% if item.url %}
+                                <p><a href="{{ item.url }}" target="_blank" style="color: #e74c3c;">{{ item.url }}</a></p>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+
+        {% if content.certifications and content.certifications|length > 0 %}
+            <div class="resume-section" data-section-container="certifications">
+                <h3 style="color: #e74c3c; text-transform: uppercase; border-bottom: 2px solid #e74c3c; padding-bottom: 5px; font-size: 1.2rem;">CERTIFICATIONS</h3>
+                <div data-section="certifications">
+                    {% for item in content.certifications %}
+                        <div class="resume-item" style="margin-bottom: 20px; position: relative; padding-left: 20px;">
+                            <div style="position: absolute; left: 0; top: 5px; width: 10px; height: 10px; background-color: #e74c3c; border-radius: 50%;"></div>
+                            <h4 style="color: #333; font-weight: bold; margin-bottom: 5px;">{{ item.title }}</h4>
+                            <h5 style="color: #555; font-weight: 500; margin-bottom: 5px;">{{ item.issuer }}</h5>
+                            {% if item.date %}
+                                <p class="date" style="color: #777; font-style: italic; margin-bottom: 5px;">{{ item.date|truncate(7, True, '') }}</p>
+                            {% endif %}
+                            <p style="margin-top: 10px; color: #333;">{{ item.description }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>

@@ -1,0 +1,229 @@
+{% extends "base.html" %}
+
+{% block title %}{{ 'Create New Resume' if mode == 'new' else 'Edit Resume' }} - ResumeGenie{% endblock %}
+
+{% block extra_css %}
+<style>
+    body {
+        overflow-x: hidden;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <form id="resume-form" method="POST" action="{{ url_for('new_resume') if mode == 'new' else url_for('edit_resume', resume_id=resume.id) }}">
+                        {{ form.hidden_tag() }}
+                        {% if resume %}
+                            <input type="hidden" id="resume-id" value="{{ resume.id }}">
+                        {% endif %}
+                        <div class="row align-items-center">
+                            <div class="col-md-4">
+                                {{ form.title.label(class="form-label") }}
+                                {% if form.title.errors %}
+                                    {{ form.title(class="form-control is-invalid") }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.title.errors %}
+                                            {{ error }}
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.title(class="form-control") }}
+                                {% endif %}
+                            </div>
+                            <div class="col-md-4">
+                                {{ form.template_id.label(class="form-label") }}
+                                {% if form.template_id.errors %}
+                                    {{ form.template_id(class="form-control is-invalid") }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.template_id.errors %}
+                                            {{ error }}
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.template_id(class="form-control") }}
+                                {% endif %}
+                            </div>
+                            <div class="col-md-4 d-flex align-items-end">
+                                <div class="btn-group w-100">
+                                    <button type="button" id="save-resume-btn" class="btn btn-primary">
+                                        <i class="bi bi-save"></i> Save
+                                    </button>
+                                    <button type="button" id="ai-generator-btn" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#aiGeneratorModal">
+                                        <i class="bi bi-magic"></i> AI Generator
+                                    </button>
+                                    <button type="button" id="download-pdf-btn" class="btn btn-success">
+                                        <i class="bi bi-file-earmark-pdf"></i> Download PDF
+                                    </button>
+                                    <a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary">
+                                        <i class="bi bi-arrow-left"></i> Back
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {% if mode == 'new' %}
+        <div class="row">
+            <div class="col-12">
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0">Select a Template</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row" id="template-selector">
+                            <div class="col-12 text-center">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading templates...</span>
+                                </div>
+                                <p class="mt-2">Loading templates...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="row" id="editor-container">
+            <div class="col-md-6">
+                <div class="card mb-3">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0">Edit Resume</h4>
+                    </div>
+                    <div class="card-body p-0">
+                        <div id="editor-content" class="p-3">
+                            <div class="text-center py-5">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading editor...</span>
+                                </div>
+                                <p class="mt-2">Loading resume content...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card mb-3">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0">Live Preview</h4>
+                    </div>
+                    <div class="card-body p-0">
+                        <iframe id="preview-frame" src="{{ url_for('view_resume', resume_id=resume.id) }}" 
+                                class="w-100" style="height: 800px; border: none;"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+<!-- AI Generator Modal -->
+<div class="modal fade" id="aiGeneratorModal" tabindex="-1" aria-labelledby="aiGeneratorModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="aiGeneratorModalLabel">AI Resume Content Generator</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-info">
+                    <i class="bi bi-info-circle-fill me-2"></i>
+                    Our AI-powered content generator helps you create professional resume content based on your job role and experience.
+                </div>
+                
+                <form id="ai-generator-form">
+                    <div class="mb-3">
+                        <label for="ai-job-role" class="form-label">Professional Role/Title</label>
+                        <input type="text" class="form-control" id="ai-job-role" placeholder="e.g., Software Developer, Marketing Manager, Financial Analyst">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="ai-years-experience" class="form-label">Years of Experience</label>
+                        <input type="number" class="form-control" id="ai-years-experience" min="0" max="50" value="3">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="ai-industry" class="form-label">Industry (Optional)</label>
+                        <input type="text" class="form-control" id="ai-industry" placeholder="e.g., Technology, Healthcare, Finance">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Generate Content For:</label>
+                        <div class="d-grid gap-2">
+                            <button type="button" class="btn btn-outline-primary" onclick="generateSummary(
+                                document.getElementById('ai-job-role').value,
+                                document.getElementById('ai-years-experience').value,
+                                document.getElementById('ai-industry').value
+                            )">
+                                <i class="bi bi-file-text me-2"></i> Professional Summary
+                            </button>
+                            
+                            <button type="button" class="btn btn-outline-primary" onclick="generateSkills(
+                                document.getElementById('ai-job-role').value, 
+                                5
+                            )">
+                                <i class="bi bi-list-check me-2"></i> Skills
+                            </button>
+                            
+                            <button type="button" class="btn btn-outline-primary" onclick="generateExperienceBullets(
+                                document.getElementById('ai-job-role').value, 
+                                3
+                            )">
+                                <i class="bi bi-briefcase me-2"></i> Experience Bullet Points
+                            </button>
+                            
+                            <button type="button" class="btn btn-outline-primary" onclick="generateProjects(
+                                document.getElementById('ai-job-role').value, 
+                                2
+                            )">
+                                <i class="bi bi-folder me-2"></i> Project Ideas
+                            </button>
+                            
+                            <button type="button" class="btn btn-outline-primary" onclick="generateEducation(
+                                document.getElementById('ai-job-role').value
+                            )">
+                                <i class="bi bi-mortarboard me-2"></i> Education
+                            </button>
+                            
+                            <button type="button" class="btn btn-outline-primary" onclick="generateCertifications(
+                                document.getElementById('ai-job-role').value,
+                                2
+                            )">
+                                <i class="bi bi-award me-2"></i> Certifications
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="d-grid">
+                        <button type="button" class="btn btn-primary btn-lg mt-3" onclick="generateFullResume(
+                            document.getElementById('ai-job-role').value,
+                            document.getElementById('ai-years-experience').value,
+                            document.getElementById('ai-industry').value
+                        )">
+                            <i class="bi bi-magic me-2"></i> Generate Full Resume Content
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/resume.js') }}"></script>
+<script src="{{ url_for('static', filename='js/ai-generator.js') }}"></script>
+<script src="{{ url_for('static', filename='js/section-reorder.js') }}"></script>
+<script src="{{ url_for('static', filename='js/reference-formatter.js') }}"></script>
+{% endblock %}

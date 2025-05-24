@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <style>
+    .background { fill: #ffffff; }
+    .header { fill: #f5f5f5; }
+    .text-box { fill: #ffffff; }
+    .line { stroke: #333333; stroke-width: 1; }
+    .accent-line { stroke: #333333; stroke-width: 3; }
+  </style>
+  
+  <!-- Background -->
+  <rect class="background" width="800" height="600" />
+  
+  <!-- Header -->
+  <rect class="header" x="0" y="0" width="800" height="100" />
+  
+  <!-- Name box -->
+  <rect class="text-box" x="50" y="30" width="400" height="40" rx="0" />
+  
+  <!-- Contact box -->
+  <rect class="text-box" x="500" y="30" width="250" height="40" rx="0" />
+  
+  <!-- Section boxes -->
+  <rect class="text-box" x="50" y="120" width="700" height="80" rx="0" />
+  <rect class="text-box" x="50" y="220" width="700" height="160" rx="0" />
+  <rect class="text-box" x="50" y="400" width="340" height="160" rx="0" />
+  <rect class="text-box" x="410" y="400" width="340" height="160" rx="0" />
+  
+  <!-- Accent lines -->
+  <line class="accent-line" x1="50" y1="120" x2="750" y2="120" />
+  <line class="accent-line" x1="50" y1="220" x2="750" y2="220" />
+  <line class="accent-line" x1="50" y1="400" x2="750" y2="400" />
+  
+  <!-- Decorative lines -->
+  <line class="line" x1="50" y1="150" x2="750" y2="150" />
+  <line class="line" x1="50" y1="250" x2="750" y2="250" />
+  <line class="line" x1="50" y1="300" x2="750" y2="300" />
+  <line class="line" x1="50" y1="350" x2="750" y2="350" />
+  <line class="line" x1="50" y1="430" x2="390" y2="430" />
+  <line class="line" x1="50" y1="480" x2="390" y2="480" />
+  <line class="line" x1="50" y1="530" x2="390" y2="530" />
+  <line class="line" x1="410" y1="430" x2="750" y2="430" />
+  <line class="line" x1="410" y1="480" x2="750" y2="480" />
+  <line class="line" x1="410" y1="530" x2="750" y2="530" />
+  
+  <!-- Template Name -->
+  <text x="400" y="580" font-family="Arial" font-size="16" text-anchor="middle" fill="#333333">Minimal Template</text>
+</svg>
